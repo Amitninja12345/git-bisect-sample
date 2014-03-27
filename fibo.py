@@ -1,3 +1,19 @@
+import functools
+
+def memoize(obj):
+    """Memoizer implementation from
+    https://wiki.python.org/moin/PythonDecoratorLibrary#Memoize
+    """
+    cache = obj.cache = {}
+
+    @functools.wraps(obj)
+    def wrapper(*args, **kwargs):
+        if args not in cache:
+            cache[args] = obj(*args, **kwargs)
+        return cache[args]
+    return wrapper
+
+@memoize
 def fibo(n):
     """Compute the nth Fibonacci number.
     Raises if n is negative
