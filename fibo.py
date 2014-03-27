@@ -6,11 +6,11 @@ def fibo(n):
     :returns: int
     :raises: ValueError
     """
+    result = 0
     if n < 0:
         raise ValueError("n must be positive.")
-    elif n == 0:
-        return 0
-    elif n == 1:
-        return 1
+    elif n <= 2 :
+        result = n
     else:
-        return fibo(n-1) + fibo(n-2)
+        result = fibo(n-1) + fibo(n-2)
+    return result
